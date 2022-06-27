@@ -21,7 +21,6 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
@@ -34,6 +33,7 @@
           },
           "configurations": {
             "production": {
+              "tsConfig": "tsconfig.prod.json",
               "budgets": [
                 {
                   "type": "initial",
@@ -55,6 +55,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "tsConfig": "tsconfig.dev.json",
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,

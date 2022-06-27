@@ -1,9 +1,11 @@
-const {app, BrowserWindow} = require('electron');
+const electron = require('electron');
 const url = require("url");
 const path = require("path");
 
-// Enable live reload for all the files inside your project directory
-const electronReload = require('electron-reload');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+
+require('electron-reload')(path.join(__dirname, 'dist'));
 
 let mainWindow;
 
@@ -23,8 +25,6 @@ function createWindow () {
       slashes: true
     })
   );
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', function () {
     mainWindow = null
@@ -38,8 +38,4 @@ app.on('window-all-closed', function () {
 
 app.on('activate', function () {
   if (mainWindow === null) createWindow();
-});
-
-electronReload(__dirname, {
-  electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 });
