@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {ElectronService} from "ngx-electron";
 
 @Component({
   selector: 'app-root',
@@ -8,8 +7,5 @@ import {ElectronService} from "ngx-electron";
 })
 export class AppComponent {
   public title = "Clipboard-app";
-  constructor(private electronService: ElectronService) {
-    this.electronService.clipboard.writeText("Hello from within the application");
-  }
-
+  constructor() {}
 }
