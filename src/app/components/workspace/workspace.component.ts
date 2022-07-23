@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {UserContentData} from "../../model/user-content-data";
 
 @Component({
   selector: 'app-workspace',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkspaceComponent implements OnInit {
 
+  @Input() data: UserContentData = new UserContentData();
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

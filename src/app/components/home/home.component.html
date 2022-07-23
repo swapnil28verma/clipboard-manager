@@ -1,4 +1,4 @@
-<div class="bg-slate-900 w-full h-full">
+<div class="bg-slate-900 w-full h-full flex flex-col">
   <div class="flex flex-row-reverse text-white p-5">
     <span>
       <i class="material-icons px-2.5">settings</i>
@@ -6,15 +6,12 @@
     </span>
   </div>
   <!--TODO: Add Search bar and functionality-->
-  <mat-tab-group class="text-white" disableRipple>
-    <mat-tab>
+  <mat-tab-group class="flex-1 text-white" disableRipple>
+    <mat-tab *ngFor="let userContent of userContentList" [label]="userContent.title">
       <!-- Pages tabs -->
       <!--TODO: Implement pages tabs-->
-      <app-workspace></app-workspace>
+      <app-workspace [data]="userContent"></app-workspace>
     </mat-tab>
-    <mat-tab label="First"> Content 1 </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-    <mat-tab label="Third"> Content 3 </mat-tab>
   </mat-tab-group>
 </div>
 

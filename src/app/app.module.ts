@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from "@angular/material/tabs";
-import { WorkspaceComponent } from './workspace/workspace.component';
+import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { QuillModule } from "ngx-quill";
+import {ScratchyCoreService} from "./services/scratchy-core.service";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { QuillModule } from "ngx-quill";
       ]
     }),
   ],
-  providers: [],
+  providers: [ScratchyCoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
