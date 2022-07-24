@@ -9,6 +9,8 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { QuillModule } from "ngx-quill";
 import {ScratchyCoreService} from "./services/scratchy-core.service";
+import {FormsModule} from "@angular/forms";
+import {TabViewModule} from "primeng/tabview";
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import {ScratchyCoreService} from "./services/scratchy-core.service";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    TabViewModule,
     QuillModule.forRoot({
       customOptions: [
         {
@@ -36,6 +39,7 @@ import {ScratchyCoreService} from "./services/scratchy-core.service";
         }
       ]
     }),
+    FormsModule,
   ],
   providers: [ScratchyCoreService],
   bootstrap: [AppComponent]
