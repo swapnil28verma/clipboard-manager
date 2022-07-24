@@ -6,12 +6,25 @@
     </span>
   </div>
   <!--TODO: Add Search bar and functionality-->
-  <mat-tab-group class="flex-1 text-white" disableRipple>
-    <mat-tab *ngFor="let userContent of userContentList" [label]="userContent.title">
-      <!-- Pages tabs -->
-      <!--TODO: Implement pages tabs-->
-      <app-workspace [data]="userContent"></app-workspace>
-    </mat-tab>
-  </mat-tab-group>
+  <div class="p-6">
+    <p-tabView class="flex-1 text-white" [style]="{ 'background': 'transparent' }">
+      <p-tabPanel *ngFor="let userContent of userContentList"
+                  [header]="userContent.title"
+                  [headerStyle]="{ 'background-color': userContent.tabColor, 'color': StyleUtils.invertColor(userContent.tabColor) }"
+                  headerStyleClass="rounded-t-lg">
+        <!-- Pages tabs -->
+        <ng-template pTemplate="header">
+          <div [style]="{ 'color': StyleUtils.invertColor(userContent.tabColor) }" class="flex justify-between">
+            {{userContent.title}}
+            <!--TODO: Implement tab closing logic -->
+            <i class="material-icons pl-2.5">close</i>
+          </div>
+        </ng-template>
+        <div [style]="{ 'background-color': userContent.tabColor }" class="p-4">
+          <app-workspace [data]="userContent"></app-workspace>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
 </div>
 

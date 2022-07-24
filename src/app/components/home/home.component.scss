@@ -1,0 +1,26 @@
+//PrimeNG theming
+.p-tabview .p-tabview-nav,
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: 4px solid black !important;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  border-bottom: none !important;
+}
+
+.p-tabview .p-tabview-panels {
+  background-color: transparent;
+  padding: 0;
+}
+
+.p-tabview .p-tabview-nav .p-tabview-ink-bar {
+  display: none;
+}
