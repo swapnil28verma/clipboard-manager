@@ -9,7 +9,7 @@
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   padding-left: 10px;
   padding-right: 10px;
-  border-bottom: 4px solid darkgrey !important;
+  border-bottom: 4px solid var(--tab-divider) !important;
 }
 
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
