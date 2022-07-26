@@ -1,0 +1,29 @@
+.ql-toolbar.ql-snow {
+  border: none;
+  border-bottom: 1px solid var(--workspace-stroke-color);
+}
+
+.ql-container.ql-snow {
+  border: none;
+  border-top: 1px solid var(--workspace-stroke-color);
+}
+
+.ql-picker-options {
+  background-color: var(--workspace-bg-color) !important;
+}
+
+.ql-stroke {
+  stroke: var(--workspace-stroke-color) !important;
+}
+
+.ql-fill {
+  fill: var(--workspace-stroke-color) !important;
+}
+
+.ql-picker {
+  color: var(--workspace-stroke-color) !important;
+}
+
+.ql-editor {
+  color: var(--workspace-stroke-color);
+}

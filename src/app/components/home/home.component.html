@@ -20,7 +20,8 @@
             <i class="material-icons pl-2.5">close</i>
           </div>
         </ng-template>
-        <div [style]="{ 'background-color': userContent.tabColor }" class="p-4">
+        <div [style.--workspace-bg-color]="userContent.tabColor"
+             [style]="{ 'background-color': userContent.tabColor }" class="p-4">
           <app-workspace [data]="userContent"></app-workspace>
         </div>
       </p-tabPanel>

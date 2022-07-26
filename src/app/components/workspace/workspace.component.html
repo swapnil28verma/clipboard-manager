@@ -1,1 +1,4 @@
-<quill-editor [(ngModel)]="data.content"></quill-editor>
+<quill-editor [(ngModel)]="data.content"
+              [style.--workspace-bg-color]="data.tabColor"
+              [style.--workspace-stroke-color]="StyleUtils.invertColor(data.tabColor)">
+</quill-editor>

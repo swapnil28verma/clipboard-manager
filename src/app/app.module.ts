@@ -7,7 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from "@angular/material/tabs";
 import { WorkspaceComponent } from './components/workspace/workspace.component';
-import { QuillModule } from "ngx-quill";
+import {QuillConfigModule, QuillModule} from "ngx-quill";
 import {ScratchyCoreService} from "./services/scratchy-core.service";
 import {FormsModule} from "@angular/forms";
 import {TabViewModule} from "primeng/tabview";
@@ -38,6 +38,28 @@ import {TabViewModule} from "primeng/tabview";
           ]
         }
       ]
+    }),
+    QuillConfigModule.forRoot({
+      modules: {
+        toolbar: [
+          // toggled buttons
+          ['bold', 'italic', 'underline', 'strike'],
+          ['blockquote', 'code-block'],
+          // custom button values
+          [{ 'header': 1 }, { 'header': 2 }],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          // outdent/indent
+          [{ 'indent': '-1'}, { 'indent': '+1' }],
+          // dropdown with defaults from theme
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'font': [] }],
+          [{ 'align': [] }],
+          // remove formatting button
+          ['clean'],
+          // link and image, video
+          ['link', 'image']
+        ]
+      }
     }),
     FormsModule,
   ],
