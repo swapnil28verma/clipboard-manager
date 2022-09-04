@@ -5,27 +5,28 @@ import {first} from "rxjs";
 import {StyleUtils} from "../../utils/style-utils";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
 
-  StyleUtils = StyleUtils;
-  userContentList: UserContentData[] = [];
+    StyleUtils = StyleUtils;
+    userContentList: UserContentData[] = [];
 
-  constructor(private coreService: ScratchyCoreService) {}
+    constructor(private coreService: ScratchyCoreService) {
+    }
 
-  ngOnInit(): void {
-    this.getUserData();
-  }
+    ngOnInit(): void {
+        this.getUserData();
+    }
 
-  public getUserData() {
-    this.coreService.getUserData().pipe(first()).subscribe(userContentList => {
-      this.userContentList = [];
-      this.userContentList.push(...userContentList);
-    });
-  }
+    public getUserData() {
+        this.coreService.getUserData().pipe(first()).subscribe(userContentList => {
+            this.userContentList = [];
+            this.userContentList.push(...userContentList);
+        });
+    }
 
 }
