@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 import {ScratchyCoreService} from "../../services/scratchy-core.service";
 import {UserContentData} from "../../model/user-content-data";
 import {first} from "rxjs";
-import {StyleUtils} from "../../utils/style-utils";
 
 @Component({
     selector: 'app-home',
@@ -12,11 +12,10 @@ import {StyleUtils} from "../../utils/style-utils";
 })
 export class HomeComponent implements OnInit {
 
-    StyleUtils = StyleUtils;
     userContentList: UserContentData[] = [];
+    selectedTab: number = 0;
 
-    constructor(private coreService: ScratchyCoreService) {
-    }
+    constructor(private coreService: ScratchyCoreService) {}
 
     ngOnInit(): void {
         this.getUserData();
@@ -29,4 +28,20 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    onSelectedTabChange(selectedTabIndex: number) {
+        if (selectedTabIndex === this.userContentList.length) {
+            this.userContentList.push(new UserContentData(uuidv4(), 'untitled' + this.userContentList.length, '', ''));
+            this.selectedTab = this.userContentList.length - 1;
+        }
+    }
+
+    onTabClose(closeEvent: any) {
+        const closeTabIndex = closeEvent.index;
+        this.userContentList.splice(closeTabIndex, 1);
+        if (closeTabIndex === this.selectedTab && closeTabIndex > 0) {
+            setTimeout(() => {
+                this.selectedTab--;
+            }, 0);
+        }
+    }
 }

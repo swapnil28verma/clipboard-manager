@@ -6,14 +6,14 @@
     </span>
     </div>
     <div class="p-6">
-        <p-tabView class="flex-1 text-white" [style]="{ 'background': 'transparent' }">
+        <p-tabView (onClose)="onTabClose($event)" (activeIndexChange)="onSelectedTabChange($event)" [(activeIndex)]="selectedTab" class="flex-1 text-white" [style]="{ 'background': 'transparent' }">
             <p-tabPanel *ngFor="let userContent of userContentList"
-                        [closable]="true"
+                        [closable]="userContentList.length > 1"
                         [headerStyle]="{ 'background-color': 'transparent', 'color': '#FFFFFF' }">
-                <!-- Tab Panel -->
+                <!-- Tab Panel header-->
                 <ng-template pTemplate="header">
                     <div class="flex justify-between">
-                        {{userContent.title}}
+                        <input class="bg-transparent outline-0" [(ngModel)]="userContent.title">
                     </div>
                 </ng-template>
                 <!-- Tab Content -->
@@ -29,6 +29,15 @@
                 </ng-template>
             </p-tabPanel>
         </p-tabView>
+<!--        <app-tab-view>-->
+<!--            <app-tab-panel *ngFor="let userContent of userContentList">-->
+<!--                <div tabHeader>This is for header {{userContent.title}}</div>-->
+<!--                <br>-->
+<!--                <br>-->
+<!--                <br>-->
+<!--                <div tabBody>This is for body {{userContent.content}}</div>-->
+<!--            </app-tab-panel>-->
+<!--        </app-tab-view>-->
     </div>
 </div>
 
