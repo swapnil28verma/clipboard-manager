@@ -4,6 +4,7 @@ const path = require("path");
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const globalShortcut = electron.globalShortcut;
 
 require('electron-reload')(path.join(__dirname, 'dist'));
 
@@ -30,10 +31,14 @@ function createWindow () {
     mainWindow = null
   });
 }
-app.on('ready', createWindow);
+app.on('ready', () => {
+    globalShortcut.register('CommandOrControl+X', createWindow);
+    if (mainWindow === null) createWindow();
+});
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit();
+app.on('window-all-closed', function (event) {
+  event.preventDefault();
+  event.returnValue = false;
 });
 
 app.on('activate', function () {
