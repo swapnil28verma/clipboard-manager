@@ -1,5 +1,10 @@
 # TODO Items
 
+### General
+General app wide items 
+
+- [ ] Material icons are not present locally
+
 ### Home Component
 Main home component of the app
 
