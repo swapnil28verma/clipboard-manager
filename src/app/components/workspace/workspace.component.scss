@@ -8,10 +8,6 @@
   border-top: 1px solid var(--workspace-stroke-color);
 }
 
-.ql-picker-options {
-  background-color: var(--workspace-bg-color) !important;
-}
-
 .ql-stroke {
   stroke: var(--workspace-stroke-color) !important;
 }
@@ -26,4 +22,12 @@
 
 .ql-editor {
   color: var(--workspace-stroke-color);
+}
+
+.ql-custom .ql-picker-item:before {
+    content: attr(data-label);
+}
+
+.tag-option {
+    border-radius: 50%;
 }
