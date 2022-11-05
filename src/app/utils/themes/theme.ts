@@ -25,6 +25,8 @@ export const light: Theme = {
         "--error-dark": "#800600",
         "--error-light": "#FFCECC",
 
+        "--font-color-default": "#FFFFFF",
+
         "--background-tertiary-shadow": "0 1px 3px 0 rgba(92, 125, 153, 0.5)"
     }
 };
@@ -51,6 +53,8 @@ export const dark: Theme = {
         "--error-dark": "#800600",
         "--error-light": "#FFCECC",
 
+        "--font-color-default": "#FFFFFF",
+
         "--background-tertiary-shadow": "0 1px 3px 0 rgba(8, 9, 10, 0.5)"
     }
 };
@@ -76,6 +80,8 @@ export const indigo: Theme = {
         "--error-default": "#EF3E36",
         "--error-dark": "#800600",
         "--error-light": "#FFCECC",
+
+        "--font-color-default": "#FFFFFF",
 
         "--background-tertiary-shadow": "0 1px 3px 0 rgba(8, 9, 10, 0.5)"
     }

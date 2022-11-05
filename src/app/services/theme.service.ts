@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
-import {dark, light, Theme} from "../utils/themes/theme";
+import { dark, indigo, light, Theme } from "../utils/themes/theme";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ThemeService {
     private active: Theme = light;
-    private availableThemes: Theme[] = [light, dark];
+    private availableThemes: Theme[] = [light, dark, indigo];
 
     getAvailableThemes(): Theme[] {
         return this.availableThemes;
