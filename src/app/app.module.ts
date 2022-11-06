@@ -11,8 +11,6 @@ import { QuillModule } from "ngx-quill";
 import { ScratchyCoreService } from "./services/scratchy-core.service";
 import { FormsModule } from "@angular/forms";
 import { TabViewModule } from "primeng/tabview";
-import { TabViewComponent } from "./components/utils/tab-view/tab-view.component";
-import { TabPanelComponent } from './components/utils/tab-view/tab-panel/tab-panel.component';
 import { ElectronCoreService } from "./services/electron-core.service";
 import { ThemeService } from "./services/theme.service";
 
@@ -21,8 +19,6 @@ import { ThemeService } from "./services/theme.service";
         AppComponent,
         HomeComponent,
         WorkspaceComponent,
-        TabViewComponent,
-        TabPanelComponent
     ],
     imports: [
         BrowserModule,
