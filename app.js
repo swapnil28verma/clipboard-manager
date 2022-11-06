@@ -32,8 +32,8 @@ function createWindow () {
   });
 }
 app.on('ready', () => {
-    globalShortcut.register('CommandOrControl+X', createWindow);
-    if (mainWindow === null) createWindow();
+    globalShortcut.register('CommandOrControl+Alt+X', createWindow);
+    createWindow();
 });
 
 app.on('window-all-closed', function (event) {
