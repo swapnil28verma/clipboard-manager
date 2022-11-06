@@ -1,13 +1,13 @@
 The canonical list of commands for a correct rebase is:
 
-git checkout develop
+git checkout master
 git pull --rebase
 git checkout {yourBranch}
-git rebase origin/develop
+git rebase origin/master
 
 In case of conflicts, loop while conflicts exist -
 git status
 <resolve conflict>
 git rebase --continue
 
-git push origin {yourBranch} --force-with-lease
+git push origin {yourBranch} --force
