@@ -1,0 +1,12 @@
+<div class="flex flex-row text-white p-5">
+    <span>
+      <i class="material-icons px-2.5" [routerLink]="''">arrow_back</i>
+    </span>
+</div>
+
+<div class="flex flex-row px-16 py-8 text-xl">
+    <span class="flex-1 font-bold">Shortcut</span>
+    <input class="flex-1 border-2 border-white bg-transparent" type="text"
+           (focusin)="onShortcutFocusIn()" (focusout)="onShortcutFocusOut()"
+           (keydown)="onShortcutChanged($event)">
+</div>

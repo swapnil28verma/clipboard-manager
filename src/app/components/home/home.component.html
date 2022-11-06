@@ -1,34 +1,31 @@
-<div class="app-bg-main w-full h-full flex flex-col">
-    <div class="flex flex-row-reverse text-white p-5">
+<div class="flex flex-row-reverse text-white p-5">
     <span>
-      <i class="material-icons px-2.5">settings</i>
+      <i class="material-icons px-2.5" [routerLink]="'settings'">settings</i>
       <i class="material-icons px-2.5">close</i>
     </span>
-    </div>
-    <div class="p-6">
-        <p-tabView class="flex-1 text-white" [style]="{ 'background': 'transparent' }">
-            <p-tabPanel *ngFor="let userContent of userContentList"
-                        [closable]="true"
-                        [headerStyle]="{ 'background-color': 'transparent', 'color': '#FFFFFF' }">
-                <!-- Tab Panel -->
-                <ng-template pTemplate="header">
-                    <div class="flex justify-between">
-                        {{userContent.title}}
-                    </div>
-                </ng-template>
-                <!-- Tab Content -->
-                <div [style.--workspace-bg-color]="'transparent'" class="p-4 rounded-b-lg rounded-tr-lg">
-                    <app-workspace [data]="userContent"></app-workspace>
-                </div>
-            </p-tabPanel>
-            <p-tabPanel [closable]="false">
-                <ng-template pTemplate="header">
-                    <div class="flex justify-between">
-                        <i class="material-icons">add</i>
-                    </div>
-                </ng-template>
-            </p-tabPanel>
-        </p-tabView>
-    </div>
 </div>
-
+<div class="p-6">
+    <p-tabView class="flex-1 text-white" [style]="{ 'background': 'transparent' }">
+        <p-tabPanel *ngFor="let userContent of userContentList"
+                    [closable]="true"
+                    [headerStyle]="{ 'background-color': 'transparent', 'color': '#FFFFFF' }">
+            <!-- Tab Panel -->
+            <ng-template pTemplate="header">
+                <div class="flex justify-between">
+                    {{userContent.title}}
+                </div>
+            </ng-template>
+            <!-- Tab Content -->
+            <div [style.--workspace-bg-color]="'transparent'" class="p-4 rounded-b-lg rounded-tr-lg">
+                <app-workspace [data]="userContent"></app-workspace>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel [closable]="false">
+            <ng-template pTemplate="header">
+                <div class="flex justify-between">
+                    <i class="material-icons">add</i>
+                </div>
+            </ng-template>
+        </p-tabPanel>
+    </p-tabView>
+</div>
