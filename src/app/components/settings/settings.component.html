@@ -7,6 +7,6 @@
 <div class="flex flex-row px-16 py-8 text-xl">
     <span class="flex-1 font-bold">Shortcut</span>
     <input class="flex-1 border-2 border-white bg-transparent" type="text"
-           (focusout)="onShortcutFocusOut()"
-           (keydown)="onShortcutChanged($event)" [value]="shortcut">
+           [value]="shortcut" (focusout)="onShortcutFocusOut()"
+           (keydown)="onShortcutKeyDown($event)" (keyup)="onShortcutKeyUp($event)">
 </div>

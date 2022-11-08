@@ -18,6 +18,9 @@ export class KeyboardUtils {
             case ' ':
                 code = 'Space';
                 break;
+            case 'Enter':
+                code = 'Enter';
+                break;
             case 'CapsLock':
             case 'Tab':
             case 'Escape':

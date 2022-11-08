@@ -10,9 +10,7 @@ export class SettingsService {
     constructor() {}
 
     public getShortcutString(key: string, currentShortcut: string): string {
-
         let shortcutString = '';
-        console.log(key);
         if (KeyboardUtils.isBackSpaceKey(key) || KeyboardUtils.isDeleteKey(key)) {
             return '';
         }

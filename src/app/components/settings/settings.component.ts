@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsConfig } from "../../model/settings-config";
 import { SettingsService } from "../../services/settings-service";
+import { StringUtils } from "../../utils/string-utils";
 
 @Component({
     selector: 'app-settings',
@@ -9,21 +10,41 @@ import { SettingsService } from "../../services/settings-service";
 })
 export class SettingsComponent implements OnInit {
     settingsConfig: SettingsConfig = new SettingsConfig();
-    shortcut = '';
+    shortcut = this.settingsConfig.shortcut;
 
-    constructor(private settingsSerivce: SettingsService) {}
+    private pressedKeyStack: string[] = [];
+    private keybindingInProgress: boolean = false;
+
+    constructor(private settingsService: SettingsService) {}
 
     ngOnInit(): void {
     }
 
-    onShortcutChanged(event: KeyboardEvent) {
+    onShortcutKeyDown(event: KeyboardEvent) {
+        if (!this.keybindingInProgress) {
+            this.shortcut = '';
+            this.keybindingInProgress = true;
+        }
         if (!event.repeat) {
-            this.shortcut = this.settingsSerivce.getShortcutString(event.key, this.shortcut);
+            this.shortcut = this.settingsService.getShortcutString(event.key, this.shortcut);
+            this.pressedKeyStack.push(event.key);
         }
         event.preventDefault();
     }
 
+    onShortcutKeyUp(event: KeyboardEvent) {
+        this.pressedKeyStack.splice(this.pressedKeyStack.indexOf(event.key), 1);
+        if (this.pressedKeyStack.length === 0) {
+            this.keybindingInProgress = false;
+        }
+    }
+
     onShortcutFocusOut() {
-        this.settingsConfig.shortcut = this.shortcut;
+        if (StringUtils.isNotBlank(this.shortcut)) {
+            this.settingsConfig.shortcut = this.shortcut;
+        } else {
+            this.shortcut = this.settingsConfig.shortcut;
+        }
+        this.keybindingInProgress = false;
     }
 }
