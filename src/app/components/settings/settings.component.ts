@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsConfig } from "../../model/settings-config";
+import { SettingsService } from "../../services/settings-service";
 
 @Component({
     selector: 'app-settings',
@@ -10,18 +11,16 @@ export class SettingsComponent implements OnInit {
     settingsConfig: SettingsConfig = new SettingsConfig();
     shortcut = '';
 
-    constructor() {
-    }
+    constructor(private settingsSerivce: SettingsService) {}
 
     ngOnInit(): void {
     }
 
     onShortcutChanged(event: KeyboardEvent) {
-        console.log(event);
-    }
-
-    onShortcutFocusIn() {
-        this.shortcut = '';
+        if (!event.repeat) {
+            this.shortcut = this.settingsSerivce.getShortcutString(event.key, this.shortcut);
+        }
+        event.preventDefault();
     }
 
     onShortcutFocusOut() {
