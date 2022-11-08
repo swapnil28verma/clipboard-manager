@@ -4,6 +4,7 @@ import { SettingsService } from "../../services/settings-service";
 import { StringUtils } from "../../utils/string-utils";
 import { Router } from "@angular/router";
 import { first } from "rxjs";
+import { KeyboardUtils } from "../../utils/keyboard-utils";
 
 @Component({
     selector: 'app-settings',
@@ -42,7 +43,7 @@ export class SettingsComponent implements OnInit {
             this.keybindingInProgress = true;
         }
         if (!event.repeat) {
-            this.shortcut = this.settingsService.getShortcutString(event.key, this.shortcut);
+            this.shortcut = this.getShortcutString(event.key, this.shortcut);
             this.pressedKeyStack.push(event.key);
         }
         event.preventDefault();
@@ -56,17 +57,29 @@ export class SettingsComponent implements OnInit {
     }
 
     onShortcutFocusOut() {
-        if (StringUtils.isNotBlank(this.shortcut)) {
-            this.settingsConfig.shortcut = this.shortcut;
-        } else {
+        if (StringUtils.isBlank(this.shortcut)) {
             this.shortcut = this.settingsConfig.shortcut;
         }
         this.keybindingInProgress = false;
     }
 
     onBackClick() {
+        // this.settingsConfig.shortcut = this.buildElectronCompatibleShortcutString(this.shortcut);
+        this.settingsConfig.shortcut = this.shortcut;
         this.settingsService.saveSettings(this.settingsConfig).pipe(first()).subscribe(() => {
             this.router.navigateByUrl(this.previousRoute);
         });
+    }
+
+    public getShortcutString(key: string, currentShortcut: string): string {
+        let shortcutString = '';
+        if (KeyboardUtils.isBackSpaceKey(key) || KeyboardUtils.isDeleteKey(key)) {
+            return '';
+        }
+        shortcutString = KeyboardUtils.getKeyCode(key)
+        if (StringUtils.isNotBlank(currentShortcut)) {
+            shortcutString = currentShortcut.concat(KeyboardUtils.SHORTCUT_SEPERATOR, KeyboardUtils.getKeyCode(key));
+        }
+        return shortcutString;
     }
 }

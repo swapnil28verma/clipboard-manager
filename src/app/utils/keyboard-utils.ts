@@ -1,4 +1,5 @@
 export class KeyboardUtils {
+    public static readonly SHORTCUT_SEPERATOR = ' + ';
     public static getKeyCode(key: string): string {
         let code = '';
         switch(key) {
@@ -8,6 +9,12 @@ export class KeyboardUtils {
                 break;
             case 'Control':
                 code = 'Ctrl';
+                break;
+            case 'Command':
+                code = 'Cmd';
+                break;
+            case 'Option':
+                code = 'Option';
                 break;
             case 'Meta':
                 code = 'Win';
