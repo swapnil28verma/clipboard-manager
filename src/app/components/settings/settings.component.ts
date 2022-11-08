@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsConfig } from "../../model/settings-config";
 import { SettingsService } from "../../services/settings-service";
 import { StringUtils } from "../../utils/string-utils";
+import { Router } from "@angular/router";
+import { first } from "rxjs";
 
 @Component({
     selector: 'app-settings',
@@ -10,14 +12,28 @@ import { StringUtils } from "../../utils/string-utils";
 })
 export class SettingsComponent implements OnInit {
     settingsConfig: SettingsConfig = new SettingsConfig();
-    shortcut = this.settingsConfig.shortcut;
+    shortcut: string = '';
 
     private pressedKeyStack: string[] = [];
     private keybindingInProgress: boolean = false;
 
-    constructor(private settingsService: SettingsService) {}
+    private readonly previousRoute: string = '';
+
+    constructor(private router: Router,
+                private settingsService: SettingsService) {
+        const finalUrl = this.router.getCurrentNavigation()?.previousNavigation?.finalUrl;
+        if (finalUrl) {
+            this.previousRoute = finalUrl.toString();
+        }
+    }
 
     ngOnInit(): void {
+        this.settingsService.loadSettings().pipe(first()).subscribe((settings: SettingsConfig) => {
+            if (settings) {
+                this.settingsConfig = settings;
+            }
+            this.shortcut = this.settingsConfig.shortcut;
+        });
     }
 
     onShortcutKeyDown(event: KeyboardEvent) {
@@ -46,5 +62,11 @@ export class SettingsComponent implements OnInit {
             this.shortcut = this.settingsConfig.shortcut;
         }
         this.keybindingInProgress = false;
+    }
+
+    onBackClick() {
+        this.settingsService.saveSettings(this.settingsConfig).pipe(first()).subscribe(() => {
+            this.router.navigateByUrl(this.previousRoute);
+        });
     }
 }

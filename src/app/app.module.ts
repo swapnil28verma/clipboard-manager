@@ -16,6 +16,7 @@ import { ScratchyCoreService } from "./services/scratchy-core.service";
 import { ElectronCoreService } from "./services/electron-core.service";
 import { ThemeService } from "./services/theme.service";
 import { SettingsService } from "./services/settings-service";
+import { NgxElectronModule } from "ngx-electron";
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { SettingsService } from "./services/settings-service";
             ]
         }),
         FormsModule,
+        NgxElectronModule
     ],
     providers: [ScratchyCoreService, SettingsService, ElectronCoreService, ThemeService],
     bootstrap: [AppComponent]
