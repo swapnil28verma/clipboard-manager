@@ -5,6 +5,8 @@ import { StringUtils } from "../../utils/string-utils";
 import { Router } from "@angular/router";
 import { first } from "rxjs";
 import { KeyboardUtils } from "../../utils/keyboard-utils";
+import { ElectronCoreService } from "../../services/electron-core.service";
+import { ElectronChannelEnum } from "../../model/electron-channel.enum";
 
 @Component({
     selector: 'app-settings',
@@ -21,7 +23,8 @@ export class SettingsComponent implements OnInit {
     private readonly previousRoute: string = '';
 
     constructor(private router: Router,
-                private settingsService: SettingsService) {
+                private settingsService: SettingsService,
+                private electronCoreService: ElectronCoreService) {
         const finalUrl = this.router.getCurrentNavigation()?.previousNavigation?.finalUrl;
         if (finalUrl) {
             this.previousRoute = finalUrl.toString();
@@ -64,9 +67,16 @@ export class SettingsComponent implements OnInit {
     }
 
     onBackClick() {
-        // this.settingsConfig.shortcut = this.buildElectronCompatibleShortcutString(this.shortcut);
-        this.settingsConfig.shortcut = this.shortcut;
-        this.settingsService.saveSettings(this.settingsConfig).pipe(first()).subscribe(() => {
+        let isShortcutChanged = false;
+        if (this.settingsConfig.shortcut !== this.shortcut) {
+            this.settingsConfig.shortcut = this.shortcut;
+            isShortcutChanged = true;
+        }
+        this.settingsService.saveSettings(this.settingsConfig).pipe(first()).subscribe(async () => {
+            // Shortcut was changed, unregister old shortcut, and register new shortcut
+            if (isShortcutChanged) {
+                this.electronCoreService.triggerMainProcessChannelHandler(ElectronChannelEnum.REGISTER_NEW_SHORTCUT);
+            }
             this.router.navigateByUrl(this.previousRoute);
         });
     }

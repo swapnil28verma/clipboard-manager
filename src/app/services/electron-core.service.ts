@@ -15,4 +15,8 @@ export class ElectronCoreService {
     public saveFile(channelName: string, fileName: string, fileData: any): Promise<any> {
         return this.electronService.ipcRenderer?.invoke(channelName, fileName, fileData)
     }
+
+    public triggerMainProcessChannelHandler(channelName: string): Promise<void> {
+        return this.electronService.ipcRenderer?.invoke(channelName);
+    }
 }
