@@ -19,3 +19,9 @@ Main quill text editor component
 - [ ] Font selection dropdown items not visible until hovered upon
 - [ ] Toolbar selected option styling not visible
 - [ ] Tags dropdown options not visible
+
+### Settings Component
+Settings page
+
+- [ ] Setting shortcuts with Ctrl + Alt + causes app to crash on launch. Issue with modifier keys changing ascii value
+- 
